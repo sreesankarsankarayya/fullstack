@@ -5,7 +5,7 @@ import os
 from flask import Flask, jsonify, request, send_from_directory
 import couchdb
 
-app = Flask(__name__, static_folder="../../ui/frontend-react-ts/dist")
+app = Flask(__name__, static_folder="../../ui/frontend-react-ts/dist") # REACT-Ts
 
 # Configure logging
 if not os.path.exists('logs'):
