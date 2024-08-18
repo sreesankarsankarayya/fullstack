@@ -19,7 +19,7 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   padding: 2rem;
   max-width: 500px;
-  width: 100%;
+  width: 90%; /* Adjust for smaller screens */
   text-align: center;
   animation: fadeIn 1s ease-out;
   transition: background-color 0.3s ease;
@@ -100,12 +100,30 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 1.5rem 0 0 0;
+  max-height: 200px; /* Adjust this value as needed */
+  overflow-y: auto;
+  border: 1px solid #34495e;
+  border-radius: 6px;
+}
+
+/* Scroll bar styling */
+ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: #4ca1af;
+  border-radius: 4px;
+}
+
+ul::-webkit-scrollbar-track {
+  background-color: #2c3e50;
 }
 
 /* Individual TODO item */
 li {
   background-color: #34495e;
-  border: 1px solid #2c3e50;
+  border-bottom: 1px solid #2c3e50;
   padding: 0.75rem;
   margin-bottom: 0.5rem;
   border-radius: 6px;
@@ -114,6 +132,11 @@ li {
   align-items: center;
   transition: transform 0.3s ease, background-color 0.3s ease;
   animation: slideIn 0.5s ease-out;
+}
+
+/* Remove margin from last TODO item */
+li:last-child {
+  margin-bottom: 0;
 }
 
 /* Slide-in animation for new TODO items */
@@ -148,4 +171,69 @@ li button {
 /* Delete button hover effect */
 li button:hover {
   background-color: #c0392b;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile phones (portrait and landscape) */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  ul {
+    max-height: 150px;
+  }
+}
+
+/* Tablets and small desktops */
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  button {
+    padding: 0.75rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    max-height: 180px;
+  }
+}
+
+/* Larger tablets and medium desktops */
+@media only screen and (max-width: 992px) {
+  .container {
+    padding: 1.75rem;
+    max-width: 80%;
+  }
+
+  h1 {
+    font-size: 1.85rem;
+  }
+
+  button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    max-height: 200px;
+  }
 }
