@@ -2,8 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #2c3e50, #4ca1af);
+  font-family: 'Poppins', sans-serif;  /* Modern, clean font */
+  background: linear-gradient(to right, #434343, #000000); /* Subtle dark gradient background */
   color: #ecf0f1;
   display: flex;
   justify-content: center;
@@ -14,12 +14,12 @@ body {
 
 /* Center the content with flexbox */
 .container {
-  background-color: #2c3e50;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background-color: #2c3e50; /* Dark, sleek background for container */
+  border-radius: 16px; /* More rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Larger shadow for depth */
   padding: 2rem;
   max-width: 500px;
-  width: 90%; /* Adjust for smaller screens */
+  width: 90%; /* Flexible width */
   text-align: center;
   animation: fadeIn 1s ease-out;
   transition: background-color 0.3s ease;
@@ -27,33 +27,36 @@ body {
 
 /* Fade-in animation for container */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 /* Header style */
 h1 {
   margin-bottom: 1.5rem;
-  font-size: 2rem;
-  color: #ecf0f1;
+  font-size: 2.5rem; /* Slightly larger, bolder font */
+  color: #ffffff; /* White color for contrast */
+  letter-spacing: 2px; /* Space out letters for a modern feel */
+  text-transform: uppercase; /* Modern text style */
 }
 
 /* Input field styling */
 input[type="text"] {
   width: calc(100% - 2rem);
-  padding: 0.75rem;
-  border: 2px solid #34495e;
-  border-radius: 6px;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
   margin-bottom: 1.5rem;
   font-size: 1rem;
-  background-color: #34495e;
-  color: #ecf0f1;
+  background-color: #34495e; /* Consistent dark theme */
+  color: #ffffff; /* White text */
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
 
 /* Input focus effect */
 input[type="text"]:focus {
-  box-shadow: 0 0 8px rgba(76, 161, 175, 0.8);
+  box-shadow: 0 0 10px rgba(76, 161, 175, 0.8);
   outline: none;
   background-color: #3b5569;
 }
@@ -61,15 +64,16 @@ input[type="text"]:focus {
 /* Fancier Button styling */
 button {
   padding: 0.75rem 2rem;
-  background-color: #4ca1af;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Gradient button for a modern look */
   color: white;
   border: none;
-  border-radius: 50px;
+  border-radius: 50px; /* Fully rounded */
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 8px 15px rgba(33, 147, 176, 0.3); /* Soft shadow */
 }
 
 button::before {
@@ -90,9 +94,9 @@ button:hover::before {
 }
 
 button:hover {
-  background-color: #357a82;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(53, 122, 130, 0.4);
+  background-color: #6dd5ed; /* Lighten the button on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 12px 24px rgba(33, 147, 176, 0.4); /* Deepen shadow */
 }
 
 /* List of TODOs */
@@ -100,10 +104,12 @@ ul {
   list-style-type: none;
   padding: 0;
   margin: 1.5rem 0 0 0;
-  max-height: 200px; /* Adjust this value as needed */
+  max-height: 250px; /* Increased height */
   overflow-y: auto;
   border: 1px solid #34495e;
-  border-radius: 6px;
+  border-radius: 8px;
+  background-color: #1f2d3d; /* Slightly darker background */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
 }
 
 /* Scroll bar styling */
@@ -112,7 +118,7 @@ ul::-webkit-scrollbar {
 }
 
 ul::-webkit-scrollbar-thumb {
-  background-color: #4ca1af;
+  background-color: #6dd5ed;
   border-radius: 4px;
 }
 
@@ -122,11 +128,11 @@ ul::-webkit-scrollbar-track {
 
 /* Individual TODO item */
 li {
-  background-color: #34495e;
-  border-bottom: 1px solid #2c3e50;
-  padding: 0.75rem;
+  background-color: #2c3e50;
+  border-bottom: 1px solid #1f2d3d;
+  padding: 1rem; /* More padding */
   margin-bottom: 0.5rem;
-  border-radius: 6px;
+  border-radius: 8px; /* Rounded corners */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -159,16 +165,21 @@ li:last-child {
 /* Item hover effect */
 li:hover {
   transform: translateY(-3px);
-  background-color: #3b5569;
+  background-color: #34495e;
 }
 
 /* Delete button */
 li button {
   background-color: #e74c3c;
   transition: background-color 0.3s ease;
+  border-radius: 50%; /* Fully rounded delete button */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Delete button hover effect */
 li button:hover {
   background-color: #c0392b;
 }
@@ -183,7 +194,7 @@ li button:hover {
   }
 
   h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   button {
@@ -192,7 +203,7 @@ li button:hover {
   }
 
   ul {
-    max-height: 150px;
+    max-height: 180px;
   }
 }
 
@@ -204,7 +215,7 @@ li button:hover {
   }
 
   h1 {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
 
   button {
@@ -213,7 +224,7 @@ li button:hover {
   }
 
   ul {
-    max-height: 180px;
+    max-height: 220px;
   }
 }
 
@@ -225,7 +236,7 @@ li button:hover {
   }
 
   h1 {
-    font-size: 1.85rem;
+    font-size: 2.25rem;
   }
 
   button {
@@ -234,6 +245,6 @@ li button:hover {
   }
 
   ul {
-    max-height: 200px;
+    max-height: 240px;
   }
 }

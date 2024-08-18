@@ -1,2 +1,2 @@
 docker start couchdb
-"Starting the DB..."
+echo "Starting the DB..."

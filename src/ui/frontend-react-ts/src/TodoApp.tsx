@@ -54,7 +54,7 @@ const TodoApp: React.FC = () => {
             className={removingTodo === todo._id ? 'fade-out' : ''}
           >
             {todo.title}
-            <button onClick={() => deleteTodo(todo._id)}>Delete</button>
+            <button onClick={() => deleteTodo(todo._id)}>✔</button>
           </li>
         ))}
       </ul>
