@@ -1,0 +1,250 @@
+/* General reset and font settings */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;  /* Modern, clean font */
+  background: linear-gradient(to right, #434343, #000000); /* Subtle dark gradient background */
+  color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Center the content with flexbox */
+.container {
+  background-color: #2c3e50; /* Dark, sleek background for container */
+  border-radius: 16px; /* More rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Larger shadow for depth */
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%; /* Flexible width */
+  text-align: center;
+  animation: fadeIn 1s ease-out;
+  transition: background-color 0.3s ease;
+}
+
+/* Fade-in animation for container */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header style */
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem; /* Slightly larger, bolder font */
+  color: #ffffff; /* White color for contrast */
+  letter-spacing: 2px; /* Space out letters for a modern feel */
+  text-transform: uppercase; /* Modern text style */
+}
+
+/* Input field styling */
+input[type="text"] {
+  width: calc(100% - 2rem);
+  padding: 1rem;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  background-color: #34495e; /* Consistent dark theme */
+  color: #ffffff; /* White text */
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+/* Input focus effect */
+input[type="text"]:focus {
+  box-shadow: 0 0 10px rgba(76, 161, 175, 0.8);
+  outline: none;
+  background-color: #3b5569;
+}
+
+/* Fancier Button styling */
+button {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Gradient button for a modern look */
+  color: white;
+  border: none;
+  border-radius: 50px; /* Fully rounded */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 15px rgba(33, 147, 176, 0.3); /* Soft shadow */
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.5s ease;
+}
+
+button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+button:hover {
+  background-color: #6dd5ed; /* Lighten the button on hover */
+  transform: translateY(-3px); /* Lift effect */
+  box-shadow: 0 12px 24px rgba(33, 147, 176, 0.4); /* Deepen shadow */
+}
+
+/* List of TODOs */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+  max-height: 250px; /* Increased height */
+  overflow-y: auto;
+  border: 1px solid #34495e;
+  border-radius: 8px;
+  background-color: #1f2d3d; /* Slightly darker background */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+/* Scroll bar styling */
+ul::-webkit-scrollbar {
+  width: 8px;
+}
+
+ul::-webkit-scrollbar-thumb {
+  background-color: #6dd5ed;
+  border-radius: 4px;
+}
+
+ul::-webkit-scrollbar-track {
+  background-color: #2c3e50;
+}
+
+/* Individual TODO item */
+li {
+  background-color: #2c3e50;
+  border-bottom: 1px solid #1f2d3d;
+  padding: 1rem; /* More padding */
+  margin-bottom: 0.5rem;
+  border-radius: 8px; /* Rounded corners */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: slideIn 0.5s ease-out;
+}
+
+/* Remove margin from last TODO item */
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* Slide-in animation for new TODO items */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-100%); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Fade-out animation for deleting TODO items */
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(100%); }
+}
+
+/* Apply fade-out animation to a TODO item when removing */
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+/* Item hover effect */
+li:hover {
+  transform: translateY(-3px);
+  background-color: #34495e;
+}
+
+/* Delete button */
+li button {
+  background-color: #e74c3c;
+  transition: background-color 0.3s ease;
+  border-radius: 50%; /* Fully rounded delete button */
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li button:hover {
+  background-color: #c0392b;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Mobile phones (portrait and landscape) */
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 1rem;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  ul {
+    max-height: 180px;
+  }
+}
+
+/* Tablets and small desktops */
+@media only screen and (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    padding: 0.75rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    max-height: 220px;
+  }
+}
+
+/* Larger tablets and medium desktops */
+@media only screen and (max-width: 992px) {
+  .container {
+    padding: 1.75rem;
+    max-width: 80%;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+  }
+
+  ul {
+    max-height: 240px;
+  }
+}
