@@ -1,8 +1,10 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
+import './todo-item';
+import './todo-input';
 
 interface Todo {
-  id?: string;
+  id: string;
   title: string;
 }
 
@@ -11,20 +13,25 @@ export class TodoApp extends LitElement {
   @state()
   private todos: Todo[] = [];
 
-  @state()
-  private newTodo: string = '';
-
   static styles = css`
     :host {
       display: block;
       max-width: 500px;
       margin: 2rem auto;
       padding: 2rem;
-      background-color: #2c3e50;
       border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       color: #ecf0f1;
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(270deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+      background-size: 800% 800%;
+      animation: gradientAnimation 15s ease infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     h1 {
@@ -33,37 +40,6 @@ export class TodoApp extends LitElement {
       letter-spacing: 2px;
       text-transform: uppercase;
       margin-bottom: 1.5rem;
-    }
-
-    input {
-      width: calc(100% - 2rem);
-      padding: 1rem;
-      border: none;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-      background-color: #34495e;
-      color: #ffffff;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    button {
-      padding: 0.75rem 2rem;
-      background: linear-gradient(135deg, #6dd5ed, #2193b0);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 8px 15px rgba(33, 147, 176, 0.3);
-      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #6dd5ed;
-      transform: translateY(-3px);
-      box-shadow: 0 12px 24px rgba(33, 147, 176, 0.4);
     }
 
     ul {
@@ -76,35 +52,6 @@ export class TodoApp extends LitElement {
       border-radius: 8px;
       background-color: #1f2d3d;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    li {
-      background-color: #2c3e50;
-      border-bottom: 1px solid #1f2d3d;
-      padding: 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-
-    li button {
-      background-color: #e74c3c;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: none;
-      color: white;
-      font-size: 1rem;
-    }
-
-    li button:hover {
-      background-color: #c0392b;
     }
   `;
 
@@ -126,70 +73,57 @@ export class TodoApp extends LitElement {
     }
   }
 
-  private async addTodo() {
-    if (this.newTodo.trim()) {
-      try {
-        const response = await fetch('http://localhost:5000/api/todos', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ title: this.newTodo }),
-        });
+  private async addTodoHandler(event: CustomEvent) {
+    const title = event.detail.title;
+    try {
+      const response = await fetch('http://localhost:5000/api/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title }),
+      });
 
-        if (response.ok) {
-          const todo: Todo = await response.json();
-          this.todos = [...this.todos, todo];
-          this.newTodo = '';
-        } else {
-          console.error('Failed to add todo:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error adding todo:', error);
+      if (response.ok) {
+        const todo: Todo = await response.json();
+        this.todos = [...this.todos, todo];
+      } else {
+        console.error('Failed to add todo:', response.statusText);
       }
+    } catch (error) {
+      console.error('Error adding todo:', error);
     }
   }
 
-  private async deleteTodo(id?: string) {
-    if (id) {
-      try {
-        const response = await fetch(`http://localhost:5000/api/todos/${id}`, {
-          method: 'DELETE',
-        });
+  private async deleteTodoHandler(event: CustomEvent) {
+    const id = event.detail.id;
+    try {
+      const response = await fetch(`http://localhost:5000/api/todos/${id}`, {
+        method: 'DELETE',
+      });
 
-        if (response.ok) {
-          this.todos = this.todos.filter(todo => todo.id !== id);
-        } else {
-          console.error('Failed to delete todo:', response.statusText);
-        }
-      } catch (error) {
-        console.error('Error deleting todo:', error);
+      if (response.ok) {
+        this.todos = this.todos.filter(todo => todo.id !== id);
+      } else {
+        console.error('Failed to delete todo:', response.statusText);
       }
+    } catch (error) {
+      console.error('Error deleting todo:', error);
     }
-  }
-
-  private handleInputChange(e: Event) {
-    const target = e.target as HTMLInputElement;
-    this.newTodo = target.value;
   }
 
   render() {
     return html`
       <h1>Todo List</h1>
-      <input
-        type="text"
-        .value="${this.newTodo}"
-        @input="${this.handleInputChange}"
-        placeholder="Add a new todo"
-      />
-      <button @click="${this.addTodo}">Add</button>
+      <todo-input @add-todo="${this.addTodoHandler}"></todo-input>
       <ul>
         ${this.todos.map(
           (todo) => html`
-            <li>
-              ${todo.title}
-              <button @click="${() => this.deleteTodo(todo.id)}">&times;</button>
-            </li>
+            <todo-item
+              .id="${todo.id}"
+              .title="${todo.title}"
+              @delete-todo="${this.deleteTodoHandler}"
+            ></todo-item>
           `
         )}
       </ul>

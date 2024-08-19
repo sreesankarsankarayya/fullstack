@@ -1,0 +1,1 @@
+docker restart nebula-metad nebula-storaged nebula-graphd nebula-graph-studio

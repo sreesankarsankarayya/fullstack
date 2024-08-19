@@ -1,16 +1,16 @@
 # Backend Server-Py
 
 ```powershell
-python -m venv .e-lit
-.e-lit/Scripts/activate
-pip install -r requirements-lit.txt
+python -m venv .e-nebula-lit
+.e-nebula-lit/Scripts/activate
+pip install -r requirements-nebula-lit.txt
 flask run
 ```
 
->  Alternatively 
+> Alternatively
 
 ```powershell
-./app-lit.py
+./app-nebula-lit.py
 ```
 
 > To detach from the env
